@@ -48,6 +48,10 @@ function CustomHandler:body_filter(config)
     CustomHandler.super.body_filter(self)
     local data, eof = ngx.arg[1], ngx.arg[2]
     if string.len(data) > 0 then
+        local body_json = json.decode(data)
+        if nil == body_json then
+            return
+        end
         for k, v in pairs(json.decode(data)) do
             local key_match, err = ngx.re.match(k, '.*_sc', 'i')
             if key_match then -- encrypt base64
