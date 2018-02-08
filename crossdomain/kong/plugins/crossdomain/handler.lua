@@ -18,7 +18,7 @@ local function set_cross_domain_name(config)
     local origin_name = ngx.req.get_headers()['Origin'] -- get request header Origin value
     local m_server, err = ngx.re.match(server_name, domain_reg, "i") -- match domain value from request server name
     if origin_name then
-        local m_origin, err = ngx.re.match(origin_name, domain_reg, "iu") -- match domain value from request Origin
+        local m_origin, err = ngx.re.match(origin_name, domain_reg, "i") -- match domain value from request Origin
         if m_origin then
             return origin_name
         end
