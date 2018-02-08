@@ -10,7 +10,7 @@ local BasePlugin = require "kong.plugins.base_plugin"
 local CustomHandler = BasePlugin:extend()
 
 local aes = require "resty.aes"
-local json = require "cjson"
+local json = require "cjson.safe"
 
 local function encrypt(encrypts, value)
     local encrypt_str = encrypts:encrypt(value)
